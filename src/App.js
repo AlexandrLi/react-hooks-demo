@@ -1,24 +1,18 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import ClassComponent from './ClassComponent/ClassComponent';
+import {LocaleContext, ThemeContext} from './context';
+import kz from './assets/kz.png';
+import HooksComponent from './HooksComponent/HooksComponent';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="main">
+      <LocaleContext.Provider value={<img src={kz} alt="kz" />}>
+        <ThemeContext.Provider value="light">
+          <ClassComponent />
+          <HooksComponent />
+        </ThemeContext.Provider>
+      </LocaleContext.Provider>
     </div>
   );
 }
