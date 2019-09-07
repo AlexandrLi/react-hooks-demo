@@ -1,42 +1,55 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {LocaleContext, ThemeContext} from '../context';
-import Row from '../shared/Row';
+import {Row} from '../shared/Row';
 
-export default function() {
-  const [name, setName] = useState('Alexandr');
-  function handleNameChange(e) {
-    setName(e.target.value);
-  }
-
-  const [surname, setSurname] = useState('Li');
-  function handleSurnameChange(e) {
-    setSurname(e.target.value);
-  }
-
-  useEffect(() => {
-    document.title = name + ' ' + surname;
-  });
-
-  const [width, setWidth] = useState(window.innerWidth);
-  useEffect(() => {
-    const handleResize = () => setWidth(window.innerWidth);
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  });
-
+export function HooksComponent() {
+  const name = useInputField('Alexandr');
+  const surname = useInputField('Li');
   const theme = useContext(ThemeContext);
   const locale = useContext(LocaleContext);
+  const width = useWindowWidth();
+  useDocumentTitle(name.value + ' ' + surname.value);
 
   return (
     <section className={theme}>
       <Row label="Name">
-        <input value={name} onChange={handleNameChange} />
+        <input {...name} />
       </Row>
       <Row label="Surname">
-        <input value={surname} onChange={handleSurnameChange} />
+        <input {...surname} />
       </Row>
-      <Row label="Width">{width}</Row>
       <Row label="Locale">{locale}</Row>
+      <Row label="Width">{width}</Row>
     </section>
   );
+}
+
+function useInputField(initialValue) {
+  const [value, setValue] = useState(initialValue);
+
+  function handleChange(e) {
+    setValue(e.target.value);
+  }
+
+  return {value, onChange: handleChange};
+}
+
+function useDocumentTitle(title) {
+  useEffect(() => {
+    document.title = title;
+  }, [title]);
+}
+
+function useWindowWidth() {
+  const [width, setWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => setWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    console.log('triggered');
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  return width;
 }

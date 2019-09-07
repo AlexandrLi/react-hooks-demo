@@ -1,6 +1,6 @@
 import React from 'react';
 import {LocaleContext, ThemeContext} from '../context';
-import Row from '../shared/Row';
+import {Row} from '../shared/Row';
 
 export default class ClassComponent extends React.Component {
   constructor(props) {
@@ -50,10 +50,10 @@ export default class ClassComponent extends React.Component {
                 onChange={this.handleSurnameChange}
               />
             </Row>
-            <Row label="Width">{this.state.width}</Row>
             <LocaleContext.Consumer>
               {locale => <Row label="Locale">{locale}</Row>}
             </LocaleContext.Consumer>
+            <Row label="Width">{this.state.width}</Row>
           </section>
         )}
       </ThemeContext.Consumer>

@@ -1,8 +1,8 @@
 import React from 'react';
+import kz from './assets/kz.png';
 import ClassComponent from './ClassComponent/ClassComponent';
 import {LocaleContext, ThemeContext} from './context';
-import kz from './assets/kz.png';
-import HooksComponent from './HooksComponent/HooksComponent';
+import {HooksComponent} from './HooksComponent/HooksComponent';
 
 function App() {
   return (

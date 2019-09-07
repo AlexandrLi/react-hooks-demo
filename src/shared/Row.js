@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function({label, children}) {
+export function Row({label, children}) {
   return (
     <div className="row">
       {label && <div>{label}</div>}
