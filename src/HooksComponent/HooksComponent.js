@@ -36,7 +36,7 @@ function useInputField(initialValue) {
 
 function useDocumentTitle(title) {
   useEffect(() => {
-    document.title = title;
+    console.log('Hooks component fullname: ', title);
   }, [title]);
 }
 
@@ -44,9 +44,9 @@ function useWindowWidth() {
   const [width, setWidth] = useState(window.innerWidth);
 
   useEffect(() => {
+    console.log('useWindowWidth called');
     const handleResize = () => setWidth(window.innerWidth);
     window.addEventListener('resize', handleResize);
-    console.log('triggered');
 
     return () => window.removeEventListener('resize', handleResize);
   }, []);

@@ -12,12 +12,18 @@ export default class ClassComponent extends React.Component {
   }
 
   componentDidMount() {
-    document.title = this.state.name + ' ' + this.state.surname;
+    console.log(
+      'Class component fullname: ',
+      this.state.name + ' ' + this.state.surname
+    );
     window.addEventListener('resize', this.handleWindowResize);
   }
 
   componentDidUpdate() {
-    document.title = this.state.name + ' ' + this.state.surname;
+    console.log(
+      'Class component fullname: ',
+      this.state.name + ' ' + this.state.surname
+    );
   }
 
   componentWillUnmount() {
